@@ -2,7 +2,7 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Liga Fictícula de Futebol</title>
+    <title>Liga Fictícia de Futebol</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,7 +39,6 @@
         tr:hover {
             background-color: #f1f8e9;
         }
-        /* Estilo do Rodapé */
         footer {
             text-align: center;
             margin-top: 30px;
@@ -70,7 +69,7 @@
             </tr>
         </thead>
         <tbody id="tabela-corpo">
-            <!-- Os dados serão preenchidos pelo JavaScript -->
+            <!-- Preenchido via JavaScript -->
         </tbody>
     </table>
 
@@ -79,7 +78,6 @@
     </footer>
 
     <script>
-        // Dados fictícios das equipas
         const equipas = [
             { nome: "FC Alvalade Norte", j: 15, v: 12, e: 2, d: 1, gm: 35, gs: 12 },
             { nome: "Leões da Serra", j: 15, v: 10, e: 4, d: 1, gm: 28, gs: 15 },
@@ -88,16 +86,13 @@
             { nome: "Boavista do Douro", j: 15, v: 7, e: 5, d: 3, gm: 20, gs: 17 }
         ];
 
-        // Calcular pontos e diferença de golos
         equipas.forEach(eq => {
             eq.pts = (eq.v * 3) + (eq.e * 1);
             eq.dg = eq.gm - eq.gs;
         });
 
-        // Ordenar por Pontos (e depois por Diferença de Golos)
         equipas.sort((a, b) => b.pts - a.pts || b.dg - a.dg);
 
-        // Inserir na tabela HTML
         const tbody = document.getElementById('tabela-corpo');
         equipas.forEach((eq, index) => {
             const linha = document.createElement('tr');
