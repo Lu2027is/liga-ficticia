@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga Fictícula de Futebol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f4f6f9;
+        }
+        h1 {
+            text-align: center;
+            color: #1b5e20;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        th {
+            background-color: #2e7d32;
+            color: white;
+        }
+        td.equipa {
+            text-align: left;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f1f8e9;
+        }
+        /* Estilo do Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            font-size: 0.85em;
+            color: #666;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Liga Fictícia de Futebol</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Pos</th>
+                <th style="text-align: left;">Equipa</th>
+                <th>J</th>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+                <th>GM</th>
+                <th>GS</th>
+                <th>DG</th>
+                <th>PTS</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-corpo">
+            <!-- Os dados serão preenchidos pelo JavaScript -->
+        </tbody>
+    </table>
+
+    <footer>
+        <p>&copy; 2026 - Site Fictício de Desporto</p>
+    </footer>
+
+    <script>
+        // Dados fictícios das equipas
+        const equipas = [
+            { nome: "FC Alvalade Norte", j: 15, v: 12, e: 2, d: 1, gm: 35, gs: 12 },
+            { nome: "Leões da Serra", j: 15, v: 10, e: 4, d: 1, gm: 28, gs: 15 },
+            { nome: "Académica do Ribatejo", j: 15, v: 9, e: 3, d: 3, gm: 24, gs: 16 },
+            { nome: "Estrela do Mar FC", j: 15, v: 8, e: 4, d: 3, gm: 22, gs: 18 },
+            { nome: "Boavista do Douro", j: 15, v: 7, e: 5, d: 3, gm: 20, gs: 17 }
+        ];
+
+        // Calcular pontos e diferença de golos
+        equipas.forEach(eq => {
+            eq.pts = (eq.v * 3) + (eq.e * 1);
+            eq.dg = eq.gm - eq.gs;
+        });
+
+        // Ordenar por Pontos (e depois por Diferença de Golos)
+        equipas.sort((a, b) => b.pts - a.pts || b.dg - a.dg);
+
+        // Inserir na tabela HTML
+        const tbody = document.getElementById('tabela-corpo');
+        equipas.forEach((eq, index) => {
+            const linha = document.createElement('tr');
+            linha.innerHTML = `
+                <td><strong>${index + 1}</strong></td>
+                <td class="equipa">${eq.nome}</td>
+                <td>${eq.j}</td>
+                <td>${eq.v}</td>
+                <td>${eq.e}</td>
+                <td>${eq.d}</td>
+                <td>${eq.gm}</td>
+                <td>${eq.gs}</td>
+                <td>${eq.dg > 0 ? '+' + eq.dg : eq.dg}</td>
+                <td><strong>${eq.pts}</strong></td>
+            `;
+            tbody.appendChild(linha);
+        });
+    </script>
+
+</body>
+</html>
